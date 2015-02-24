@@ -10,13 +10,6 @@ class CategoriesController < ApplicationController
   # GET /categories/1
   # GET /categories/1.json
   def show
-    p params
-    # if params[:category_id]
-       id = params[:category_id]
-    # else
-    #   id = params[:id]
-    # end
-    redirect_to category_posts_path(params[:category_id])
   end
 
   # GET /categories/new
