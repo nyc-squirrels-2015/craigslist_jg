@@ -1,0 +1,39 @@
+<%= form_for(@post) do |f| %>
+  <% if @post.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+      <ul>
+      <% @post.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+  <div class="field">
+    <%= f.label :title %><br>
+    <%= f.text_field :title %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :email %><br>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    <%= f.text_field :price %>
+  </div>
+  <div class="field">
+    <%= f.label :category_id %><br>
+    <!-- Category.all.reduce{|map_out, cat| map_out[cat.name]=cat.id}  }-->
+    <%=  f.select :category_id, options_for_select(  Category.all.map{|cat| {cat.name=>cat.id}}.inject{|acc, item| acc.merge(item) }  )%>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
